@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>タスク編集</title>
+    <link rel="stylesheet" href="{{ url_for('crud.static', filename='css/edit.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header_title">TODOLIST</h1>
+    </header>
+
+    <h2 class="task_title">タスク編集</h2>
+    <form method="POST" class="edit_box">
+        {{ form.csrf_token }}
+        {{ form.todo(size=40) }}
+        <h2>URL</h2>
+        {{ form.url(size=40, placeholder="URLを入力してください") }}
+        {{ form.custom_button() }}
+    </form>
+
+    <footer class="footer">
+        <button type="button" class="button" onclick="location.href='/'">TASKLIST</button>
+        <button type="button" class="button" onclick="location.href='/cal'">CALENDAR</button>
+        <button type="button" class="button" onclick="location.href='/set'">SETTING</button>
+    </footer>
+</body>
+
+</html>

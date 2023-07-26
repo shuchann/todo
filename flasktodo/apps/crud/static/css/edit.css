@@ -1,0 +1,54 @@
+html,
+body {
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    border-bottom: 3px solid #5F4B8B;
+    background-color: #FBEAFF;
+    margin-bottom: 20px;
+}
+
+.header_title {
+    margin-left: 20px;
+    color: #5F4B8B;
+}
+
+.task_title {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 50px;
+    color: #5F4B8B;
+}
+
+.edit_box {
+    text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #FBEAFF;
+}
+
+.footer button {
+    font-family: 'Noto Sans JP', sans-serif;
+    padding: 8px 30px;
+    border-radius: 8px;
+    border: 2px solid #5F4B8B;
+    margin: 0 20px;
+    background-color: #FBEAFF;
+    color: #5F4B8B;
+}

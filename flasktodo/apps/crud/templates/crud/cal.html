@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>カレンダー</title>
+    <link rel="stylesheet" href="{{ url_for('crud.static', filename='css/cal.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+    <!-- FullCalendarのスクリプトとスタイルシート -->
+    <link href='https://unpkg.com/@fullcalendar/core@5/main.css' rel='stylesheet' />
+    <link href='https://unpkg.com/@fullcalendar/daygrid@5/main.css' rel='stylesheet' />
+
+    <script src='https://unpkg.com/@fullcalendar/core@5/main.js'></script>
+    <script src='https://unpkg.com/@fullcalendar/daygrid@5/main.js'></script>
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header_title">TODOLIST</h1>
+    </header>
+
+    <h1 class="aa">カレンダー挿入予定</h1>
+    <!-- カレンダーを表示する要素 -->
+    <div id='calendar'></div>
+
+    <footer class="footer">
+        <button type="button" class="button" onclick="location.href='/'">TASKLIST</button>
+        <button type="button" class="button" onclick="location.href='/cal'">CALENDAR</button>
+        <button type="button" class="button" onclick="location.href='/set'">SETTING</button>
+    </footer>
+
+    <!-- FullCalendarの初期化 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: [
+                    {
+                        title: 'Event 1',
+                        start: '2023-07-24'
+                    },
+                    {
+                        title: 'Event 2',
+                        start: '2023-07-25'
+                    }
+                ]
+            });
+            calendar.render();
+        });
+    </script>
+</body>
+
+</html>

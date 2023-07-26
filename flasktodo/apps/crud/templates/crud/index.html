@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>ToDoリスト</title>
+    <link rel="stylesheet" href="{{ url_for('crud.static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header_title">TODOLIST</h1>
+    </header>
+
+    <div class="container">
+        <h2 class="task_title">TASK ADDITION</h2>
+        <div>
+            <form action="{{ url_for('crud.todo_post') }}" method="POST" novalidate="novalidate">
+                {{ form.csrf_token }}
+                <p>{{ form.todo(placeholder="タスク追加") }} {{ form.submit() }}</p>
+            </form>
+        </div>
+    </div>
+
+    <p class="task_title">TASKLIST</p>
+
+    {% block content %}
+    {% if get_task %}
+    {% for task in get_task %}
+    <article>
+        <div class="task_list">
+            <input type="text" value="{{task.todo}}" readonly>
+            <div class="task_details">
+                <form action="{{ url_for('crud.update_due_date', task_id=task.id) }}" method="POST">
+                    {{ form.csrf_token }}
+                    <input type="date" id="duedate" name="duedate" value="{{task.duedate}}"
+                        onchange="this.form.submit()">
+                </form>
+                <p class="tasu_kizitu">期日：{{ task.due_date.date() if task.due_date else 'N/A' }}</p>
+                <form action="{{ url_for('crud.update_status', task_id=task.id) }}" method="POST">
+                    {{ form.csrf_token }}
+                    <select class="progress" name="shinnkoudo" onchange="this.form.submit()">
+                        <option value="">進行度</option>
+                        <option value="未着手" {% if task.shinnkoudo=='未着手' %}selected{% endif %}>未着手</option>
+                        <option value="進行中" {% if task.shinnkoudo=='進行中' %}selected{% endif %}>進行中</option>
+                        <option value="完了" {% if task.shinnkoudo=='完了' %}selected{% endif %}>完了</option>
+                        <option value="遅れ" {% if task.shinnkoudo=='遅れ' %}selected{% endif %}>遅れ</option>
+                    </select>
+                </form>
+                <form action="{{ url_for('crud.update_priority', task_id=task.id) }}" method="POST">
+                    {{ form.csrf_token }}
+                    <select class="priority" name="juuyoudo" onchange="this.form.submit()">
+                        <option value="">重要度</option>
+                        <option value="高" {% if task.juuyoudo=='高' %}selected{% endif %}>高</option>
+                        <option value="中" {% if task.juuyoudo=='中' %}selected{% endif %}>中</option>
+                        <option value="低" {% if task.juuyoudo=='低' %}selected{% endif %}>低</option>
+                    </select>
+                </form>
+            </div>
+            <a href="{{ url_for('crud.task_detail', task_id=task.id) }}">
+                <button type="button">タスク詳細</button>
+            </a>
+            <div class="task_actions">
+                <form action="{{ url_for('crud.edit_todo', task_id=task.id) }}" method="get">
+                    <button type="submit">EDIT</button>
+                </form>
+                <form action="{{ url_for('crud.delete_task', task_id=task.id) }}" method="POST">
+                    {{ form.csrf_token }}
+                    <button type="submit">DELETE</button>
+                </form>
+            </div>
+        </div>
+
+        </br>
+    </article>
+    {% endfor %}
+    {% else %}
+    <p class="nodate">タスクがありません。</p>
+    {% endif %}
+    {% endblock %}
+
+    {% for todo in todo %}
+    {{ todo.id }}
+    {{ todo.todo }}
+    {% endfor %}
+
+    <footer class="footer">
+        <button type="button" class="button" onclick="location.href='/'">TASKLIST</button>
+        <button type="button" class="button" onclick="location.href='/cal'">CALENDAR</button>
+        <button type="button" class="button" onclick="location.href='/set'">SETTING</button>
+    </footer>
+</body>
+
+</html>

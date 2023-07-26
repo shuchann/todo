@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>設定</title>
+    <link rel="stylesheet" href="{{ url_for('crud.static', filename='css/set.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header_title">TODOLIST</h1>
+    </header>
+
+    <h1 class="title">リマインダー機能設定</h1>
+
+    <div class="onoff">
+        <button type="submit" class="button">ON</button>
+        <button type="submit" class="button">OFF</button>
+
+    </div>
+
+    <footer class="footer">
+        <button type="button" class="button" onclick="location.href='./'">TASKLIST</button>
+        <button type="button" class="button" onclick="location.href='./cal'">CALEBDER</button>
+        <button type="button" class="button" onclick="location.href='./set'">SETTING</button>
+    </footer>
+</body>
+
+</html>
